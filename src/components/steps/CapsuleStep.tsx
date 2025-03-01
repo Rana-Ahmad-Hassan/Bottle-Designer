@@ -1,44 +1,29 @@
+import { capsuleOptions } from '../../constants/bottles';
 import { StepProps } from '../../types/bottles';
-import { capsuleTypes } from '../../constants/bottles';
-import { capsules } from '../../constants/models';
-import Scene from '../models-components/bottleScene';
-import CapsuleScene from '../models-components/capsuleScene';
 export function CapsuleStep({ design, updateDesign, onNext, onBack, onReset }: StepProps) {
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 border shadow-sm rounded-md">
+    <div className="w-full max-w-5xl mx-auto p-6 border shadow-sm rounded-md">
       <div>
-        <div className="w-full h-96 flex items-center justify-center border border-gray-200 bg-gray-100 p-0 rounded-lg overflow-hidden">
-          <div className="w-1/2 h-full">
-            <Scene key={design.shape} modelId={design.shape} color={design.color} capsuleModelId={design.capsule} />
-          </div>
-          {/* <div className="w-1/2 h-full">
-            <CapsuleScene
-              key={`preview-${design.capsule}`}
-              capsuleModelId={design.capsule}
-              className="w-full h-full"
-              interactive={true}
-            />
-          </div> */}
-        </div>
         <div className="flex flex-col space-y-3">
           <h2 className="text-lg font-bold text-gray-900">Choose capsule for your bottle</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-2">
-            {capsules.map((capsule) => (
-              <button
-                key={capsule.id}
-                onClick={() => updateDesign({ capsule: capsule.id })}
-                className={` rounded-lg border py-1 transition-all ${
-                  design.capsule === capsule.id ? 'border-cyan bg-cyan' : 'border-gray-200 hover:border-gray-300'
+            {capsuleOptions.map((capsule) => (
+              <div
+                key={capsule.type}
+                className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-all ${
+                  design.capsule === capsule.type ? 'border-primary bg-cyan' : 'border-gray-200 hover:border-gray-300'
                 }`}
+                onClick={() => updateDesign({ capsule: capsule.type })}
               >
-                <CapsuleScene
-                  key={`preview-${capsule.id}`}
-                  capsuleModelId={capsule.id}
-                  interactive={false}
-                  className="w-full h-auto"
-                />
-                <p className="mt-2 text-sm text-black text-center">{capsule.name}</p>
-              </button>
+                <div className="flex flex-col items-center p-3">
+                  <img
+                    src={capsule.image || '/placeholder.svg'}
+                    alt={capsule.name}
+                    className="h-16 object-contain mb-2"
+                  />
+                  <span className="text-sm text-center">{capsule.name}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>

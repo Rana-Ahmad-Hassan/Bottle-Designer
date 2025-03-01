@@ -1,39 +1,13 @@
 import { StepProps } from '../../types/bottles';
 import { useState } from 'react';
-import Scene from '../models-components/bottleScene';
-
-const bottleVariants = {
-  white: Array.from({ length: 24 }, (_, i) => ({
-    id: `white-${i + 1}`,
-    name: `White ${i + 1}`,
-    value: `hsl(60, 100%, ${90 - i * 2}%)`,
-  })),
-  rose: Array.from({ length: 24 }, (_, i) => ({
-    id: `rose-${i + 1}`,
-    name: `Rosé ${i + 1}`,
-    value: `hsl(0, 70%, ${90 - i * 2}%)`,
-  })),
-  red: Array.from({ length: 24 }, (_, i) => ({
-    id: `red-${i + 1}`,
-    name: `Red ${i + 1}`,
-    value: `hsl(350, 60%, ${80 - i * 2}%)`,
-  })),
-};
+import { bottleVariants } from '../../constants/bottles';
 
 export function ColorStep({ design, updateDesign, onNext, onBack, onReset }: StepProps) {
   const [activeTab, setActiveTab] = useState<'white' | 'rose' | 'red'>('white');
   const [, setCustomColor] = useState('');
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 border rounded-md">
-      <div className="flex flex-col items-center justify-center border bg-gray-100  p-8 rounded-lg">
-        <div className="flex flex-col h-96 items-center justify-center  p-0 rounded-lg overflow-hidden">
-          <div className="w-full h-full">
-            <Scene key={design.shape} modelId={design.shape} color={design.color} />
-          </div>
-        </div>
-      </div>
-
+    <div className="w-full max-w-5xl mx-auto p-6 border rounded-md">
       <div className="flex justify-between items-center flex-wrap gap-4 mb-6">
         <div className="border-b pb-1">
           {Object.keys(bottleVariants).map((key) => (

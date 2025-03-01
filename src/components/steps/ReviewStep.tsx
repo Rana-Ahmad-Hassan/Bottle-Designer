@@ -1,10 +1,8 @@
-import { bottleShapes, bottleColors, capsuleTypes } from '../../constants/bottles';
+import {  bottleColors } from '../../constants/bottles';
 import { StepProps } from '../../types/bottles';
 
 export function ReviewStep({ design, onNext, onBack, onReset }: StepProps) {
-  const selectedBottle = bottleShapes.find((b) => b.id === design.shape);
   const selectedColor = bottleColors.find((c) => c.id === design.color);
-  const selectedCapsule = capsuleTypes.find((c) => c.id === design.capsule);
   const selectedCapsuleColor = bottleColors.find((c) => c.id === design.capsuleColor);
 
   return (
@@ -16,27 +14,27 @@ export function ReviewStep({ design, onNext, onBack, onReset }: StepProps) {
           <div className="space-y-4">
             <div className="bg-white p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-gray-700">Bottle Shape</h3>
-              <p className="text-gray-600">{selectedBottle?.name || 'Not selected'}</p>
+              <p className="text-gray-600">{`${design.type} Bottle` || 'Not selected'}</p>
             </div>
 
             <div className="bg-white p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-gray-700">Bottle Color</h3>
               <div className="flex items-center space-x-2">
                 <div className="w-6 h-6 rounded-full" style={{ backgroundColor: selectedColor?.value }} />
-                <p className="text-gray-600">{selectedColor?.name || 'Not selected'}</p>
+                <p className="text-gray-600">{design.color || 'Not selected'}</p>
               </div>
             </div>
 
             <div className="bg-white p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-gray-700">Capsule</h3>
-              <p className="text-gray-600">{selectedCapsule?.name || 'Not selected'}</p>
+              <p className="text-gray-600">{design.capsule || 'Not selected'}</p>
             </div>
 
             <div className="bg-white p-4 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-gray-700">Capsule Color</h3>
               <div className="flex items-center space-x-2">
                 <div className="w-6 h-6 rounded-full" style={{ backgroundColor: selectedCapsuleColor?.value }} />
-                <p className="text-gray-600">{selectedCapsuleColor?.name || 'Not selected'}</p>
+                <p className="text-gray-600">{design.capsuleColor || 'Not selected'}</p>
               </div>
             </div>
 
@@ -60,7 +58,7 @@ export function ReviewStep({ design, onNext, onBack, onReset }: StepProps) {
             }}
           >
             {design.label && (
-              <img src={URL.createObjectURL(design.label)} alt="Bottle label" className="w-full h-auto" />
+              <img src={design.label} alt="Bottle label" className="w-full h-auto" />
             )}
           </div>
         </div>

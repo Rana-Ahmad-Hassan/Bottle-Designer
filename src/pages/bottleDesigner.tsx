@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { VerticalStepper } from '../components/steppers/verticalStepper';
 import { ShapeStep } from '../components/steps/ShapeStep';
 import { ColorStep } from '../components/steps/ColorStep';
 import { CapsuleStep } from '../components/steps/CapsuleStep';
@@ -10,24 +9,24 @@ import { ReviewStep } from '../components/steps/ReviewStep';
 import { BackgroundStep } from '../components/steps/BackGroundStep';
 import { BottleDesign } from '../types/bottles';
 import { steps } from '../constants/steps';
+import { VerticalStepper } from '../components/steppers/verticalStepper';
 import { HorizontalStepper } from '../components/steppers/horizontalSteppar';
+import BottlePreview from '../components/canvas/preview';
 
 const initialDesign: BottleDesign = {
-  shape: '',
-  color: '',
+  type: 'burgundy',
+  color: 'silver',
   capsule: '',
   capsuleColor: '',
   label: null,
-  texture: '',
+  texture: 'smooth',
   background: '',
 };
 
 function BottleDesigner() {
   const [currentStep, setCurrentStep] = useState(0);
   const [design, setDesign] = useState<BottleDesign>(initialDesign);
-
-  console.log(design, 'design------------------>');
-
+  console.log(design)
   const updateDesign = (updates: Partial<BottleDesign>) => {
     setDesign((prev) => ({ ...prev, ...updates }));
   };
@@ -152,7 +151,12 @@ function BottleDesigner() {
               }))}
             />
           </div>
-          <div className="flex-1 w-full min-w-0">{currentStepComponent()}</div>
+          <div className="flex-1 border p-4 rounded-md w-full min-w-0">
+            <div>
+              <BottlePreview design={design} />
+            </div>
+            {currentStepComponent()}
+          </div>
         </div>
       </div>
     </div>

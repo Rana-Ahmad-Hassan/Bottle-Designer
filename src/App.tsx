@@ -29,7 +29,6 @@ function App() {
       <ModalProvider backgroundComponent={FadingBackground}>
         <GlobalStyles />
         <Content>
-          <h1>Hey</h1>
           <AppRoutes />
         </Content>
       </ModalProvider>
