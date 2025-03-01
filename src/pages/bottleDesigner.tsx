@@ -9,9 +9,10 @@ import { ReviewStep } from '../components/steps/ReviewStep';
 import { BackgroundStep } from '../components/steps/BackGroundStep';
 import { BottleDesign } from '../types/bottles';
 import { steps } from '../constants/steps';
-import { VerticalStepper } from '../components/steppers/verticalStepper';
-import { HorizontalStepper } from '../components/steppers/horizontalSteppar';
-import BottlePreview from '../components/canvas/preview';
+import BottlePreview from '../components/canvas/Preview';
+import { HorizontalStepper } from '../components/steppers/HorizontalSteppar';
+import { VerticalStepper } from '../components/steppers/VerticalStepper';
+
 
 const initialDesign: BottleDesign = {
   type: 'burgundy',
