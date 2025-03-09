@@ -4,19 +4,24 @@ import { bottleOptions } from '../../constants/bottles';
 export function ShapeStep({ design, updateDesign, onNext, onReset }: StepProps) {
   return (
     <div className="w-full max-w-5xl mx-auto border rounded-md shadow-sm p-4">
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 mt-6">
+      <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 mt-6">
         {bottleOptions.map((bottle) => (
-          <div
-            key={bottle.type}
-            className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-all ${
-              design.type === bottle.type ? 'border-primary bg-cyan' : 'border-gray-200 hover:border-gray-300'
-            }`}
-            onClick={() => updateDesign({ type: bottle.type })}
-          >
-            <div className="flex flex-col items-center p-3">
-              <img src={bottle.image || '/placeholder.svg'} alt={bottle.name} className="h-24 object-contain mb-2" />
-              <span className="text-sm text-center text-black">{bottle.name}</span>
+          <div key={bottle.type} className="flex flex-col items-center">
+            <div
+              className={`relative cursor-pointer rounded-lg overflow-hidden transition-all p-3 ${
+                design.type === bottle.type ? 'bg-cyan' : 'bg-blue-300/25'
+              }`}
+              onClick={() => updateDesign({ type: bottle.type })}
+            >
+              <div className="flex justify-center">
+                <img
+                  src={bottle.image || '/placeholder.svg'}
+                  alt={bottle.name}
+                  className="h-24 w-24 mix-blend-darken object-contain mb-2"
+                />
+              </div>
             </div>
+            <span className="text-xs text-center text-black mt-2">{bottle.name}</span>
           </div>
         ))}
       </div>

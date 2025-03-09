@@ -13,13 +13,12 @@ import BottlePreview from '../components/canvas/Preview';
 import { HorizontalStepper } from '../components/steppers/HorizontalSteppar';
 import { VerticalStepper } from '../components/steppers/VerticalStepper';
 
-
 const initialDesign: BottleDesign = {
   type: 'burgundy',
   color: 'silver',
   capsule: '',
   capsuleColor: '',
-  label: null,
+  label: '',
   texture: 'smooth',
   background: '',
 };
@@ -27,7 +26,7 @@ const initialDesign: BottleDesign = {
 function BottleDesigner() {
   const [currentStep, setCurrentStep] = useState(0);
   const [design, setDesign] = useState<BottleDesign>(initialDesign);
-  console.log(design)
+  console.log(design);
   const updateDesign = (updates: Partial<BottleDesign>) => {
     setDesign((prev) => ({ ...prev, ...updates }));
   };

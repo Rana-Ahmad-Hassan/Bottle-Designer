@@ -8,21 +8,22 @@ export function CapsuleStep({ design, updateDesign, onNext, onBack, onReset }: S
           <h2 className="text-lg font-bold text-gray-900">Choose capsule for your bottle</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-2">
             {capsuleOptions.map((capsule) => (
-              <div
-                key={capsule.type}
-                className={`relative cursor-pointer rounded-lg overflow-hidden border-2 transition-all ${
-                  design.capsule === capsule.type ? 'border-primary bg-cyan' : 'border-gray-200 hover:border-gray-300'
-                }`}
-                onClick={() => updateDesign({ capsule: capsule.type })}
-              >
-                <div className="flex flex-col items-center p-3">
-                  <img
-                    src={capsule.image || '/placeholder.svg'}
-                    alt={capsule.name}
-                    className="h-16 object-contain mb-2"
-                  />
-                  <span className="text-sm text-center">{capsule.name}</span>
+              <div key={capsule.type} className="flex flex-col items-center">
+                <div
+                  className={`relative cursor-pointer rounded-lg overflow-hidden transition-all p-3 ${
+                    design.capsule === capsule.type ? 'border-primary bg-cyan' : 'bg-blue-300/20'
+                  }`}
+                  onClick={() => updateDesign({ capsule: capsule.type })}
+                >
+                  <div className="flex justify-center">
+                    <img
+                      src={capsule.image || '/placeholder.svg'}
+                      alt={capsule.name}
+                      className="h-24 w-40 object-contain mix-blend-darken"
+                    />
+                  </div>
                 </div>
+                <span className="text-sm text-center mt-2">{capsule.name}</span>
               </div>
             ))}
           </div>

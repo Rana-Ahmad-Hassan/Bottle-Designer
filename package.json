@@ -33,6 +33,7 @@
     "@types/styled-react-modal": "^1.2.5",
     "axios": "^1.6.2",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.4.10",
     "lucide-react": "^0.476.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

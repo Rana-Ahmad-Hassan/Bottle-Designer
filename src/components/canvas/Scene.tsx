@@ -63,7 +63,7 @@ export default function BottleModel({ design }: BottleModelProps) {
                 material.clearcoat = 0;
                 material.transmission = 0.5;
                 break;
-              default: // smooth
+              default:
                 material.roughness = 0.1;
                 material.clearcoat = 0.5;
                 break;
@@ -86,10 +86,10 @@ export default function BottleModel({ design }: BottleModelProps) {
           opacity={design.color === 'clear' ? 0.1 : 1}
           roughness={0.1}
           metalness={0}
-          transmission={design.color === 'clear' ? 1 : 0} 
+          transmission={design.color === 'clear' ? 1 : 0}
           thickness={design.color === 'clear' ? 0.2 : 0}
-          ior={1.5} 
-          side={DoubleSide} 
+          ior={1.5}
+          side={DoubleSide}
         />
       </mesh>
 
@@ -144,18 +144,15 @@ export default function BottleModel({ design }: BottleModelProps) {
       )}
 
       {design.label && texture && (
-        <mesh
-          name="label" 
-          position={[0, 0, 0]}
-        >
+        <mesh name="label" position={[0, 0, 0]}>
           <cylinderGeometry
             args={[
               shapeParams.bodyRadius + 0.001,
               shapeParams.bodyRadius + 0.001,
-              shapeParams.bodyHeight * 0.4, 
+              shapeParams.bodyHeight * 0.4,
               32,
               1,
-              true, 
+              true,
             ]}
           />
           <meshBasicMaterial map={texture} transparent={true} side={DoubleSide} opacity={1} />

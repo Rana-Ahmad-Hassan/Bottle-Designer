@@ -17,12 +17,15 @@ interface BottlePreviewProps {
 }
 
 export default function BottlePreview({ design }: BottlePreviewProps) {
+  console.log(design.background);
   return (
     <div
-      className="relative w-full h-[400px] border mb-2 aspect-[4/3]  rounded-lg overflow-hidden"
+      className="relative w-full h-[450px] border mb-2 aspect-[4/3]  rounded-lg overflow-hidden"
       style={{
         backgroundImage: `url(${design.background})`,
-        backgroundColor: `${design.background}`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <Canvas shadows dpr={[1, 10]} camera={{ position: [0, 0, 4.5], fov: 50 }}>

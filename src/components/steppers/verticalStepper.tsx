@@ -51,7 +51,6 @@ export function VerticalStepper({ steps }: StepperProps) {
                 <div className="group relative flex items-center">
                   <span className="flex h-12 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
-                      {/* <span className="h-2.5 w-2.5 rounded-full bg-transparent" /> */}
                       <h1 className="text-black">{step.id}</h1>
                     </span>
                   </span>
