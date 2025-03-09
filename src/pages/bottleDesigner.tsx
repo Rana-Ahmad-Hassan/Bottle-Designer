@@ -12,6 +12,7 @@ import { steps } from '../constants/steps';
 import BottlePreview from '../components/canvas/Preview';
 import { HorizontalStepper } from '../components/steppers/HorizontalSteppar';
 import { VerticalStepper } from '../components/steppers/VerticalStepper';
+import Modal from '../components/modal/modal';
 
 const initialDesign: BottleDesign = {
   type: 'burgundy',
@@ -26,6 +27,7 @@ const initialDesign: BottleDesign = {
 function BottleDesigner() {
   const [currentStep, setCurrentStep] = useState(0);
   const [design, setDesign] = useState<BottleDesign>(initialDesign);
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false); 
 
   const updateDesign = (updates: Partial<BottleDesign>) => {
     setDesign((prev) => ({ ...prev, ...updates }));
@@ -40,6 +42,11 @@ function BottleDesigner() {
   };
 
   const handleReset = () => {
+    setIsResetModalOpen(true); 
+  };
+
+  const confirmReset = () => {
+    setIsResetModalOpen(false);
     setDesign(initialDesign);
     setCurrentStep(0);
   };
@@ -198,6 +205,14 @@ function BottleDesigner() {
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={isResetModalOpen}
+        onClose={() => setIsResetModalOpen(false)}
+        onConfirm={confirmReset}
+        title="Confirm Reset"
+        message="Are you sure you want to reset your bottle design? This action cannot be undone."
+      />
     </div>
   );
 }
