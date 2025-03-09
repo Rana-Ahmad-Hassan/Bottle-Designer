@@ -26,7 +26,7 @@ const initialDesign: BottleDesign = {
 function BottleDesigner() {
   const [currentStep, setCurrentStep] = useState(0);
   const [design, setDesign] = useState<BottleDesign>(initialDesign);
-  console.log(design);
+
   const updateDesign = (updates: Partial<BottleDesign>) => {
     setDesign((prev) => ({ ...prev, ...updates }));
   };
@@ -42,6 +42,45 @@ function BottleDesigner() {
   const handleReset = () => {
     setDesign(initialDesign);
     setCurrentStep(0);
+  };
+
+  const handleSave = () => {
+    requestAnimationFrame(() => {
+      const canvas = document.querySelector('#bottle-preview canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (!gl) return;
+
+      const tempCanvas = document.createElement('canvas');
+      const tempCtx = tempCanvas.getContext('2d');
+      if (!tempCtx) return;
+
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+
+      const bgImage = new Image();
+      bgImage.crossOrigin = 'anonymous';
+      bgImage.src = design.background;
+
+      bgImage.onload = () => {
+        tempCtx.drawImage(bgImage, 0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(canvas, 0, 0);
+        tempCanvas.toBlob(
+          (blob) => {
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.download = `bottle-design-${Date.now()}.png`;
+              link.href = url;
+              link.click();
+              URL.revokeObjectURL(url);
+            }
+          },
+          'image/png',
+          1.0,
+        );
+      };
+    });
   };
 
   const currentStepComponent = () => {
@@ -121,7 +160,7 @@ function BottleDesigner() {
           <BackgroundStep
             design={design}
             updateDesign={updateDesign}
-            onNext={handleNext}
+            onNext={handleSave}
             onBack={handleBack}
             onReset={handleReset}
           />

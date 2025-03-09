@@ -4,8 +4,8 @@ import { backgroundTypes } from '../../constants/bottles';
 export function BackgroundStep({ design, updateDesign, onNext, onBack, onReset }: StepProps) {
   return (
     <div className="w-full max-w-4xl mx-auto p-6">
-      <div >
-        <div className=" space-y-4">
+      <div>
+        <div className="space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">Choose background for your bottle</h2>
           <div className="grid grid-cols-4 gap-4">
             {backgroundTypes.map((bg) => (
@@ -40,11 +40,8 @@ export function BackgroundStep({ design, updateDesign, onNext, onBack, onReset }
           >
             Reset
           </button>
-          <button
-            onClick={onNext}
-            className="px-4 py-2 text-sm font-medium text-white bg-cyan rounded-md hover:bg-cyan"
-          >
-            Save Design
+          <button onClick={onNext} className="px-4 py-2 text-sm font-medium text-white bg-cyan rounded-md">
+            Download Design
           </button>
         </div>
       </div>

@@ -1,21 +1,21 @@
 import { BottleType, TextureType } from '../types/bottles';
 import { CapsuleType } from '../types/bottles';
-import b1 from "../assets/images/b1.png"
-import b2 from "../assets/images/b2.png"
-import b3 from "../assets/images/b3.png"
-import b4 from "../assets/images/b4.png"
-import b5 from "../assets/images/b5.png"
-import b6 from "../assets/images/b6.png"
-import c1 from "../assets/images/1c.png"
-import c2 from "../assets/images/2c.png"
-import c3 from "../assets/images/3c.png"
-import c4 from "../assets/images/4c.png"
+import b1 from '../assets/images/b1.png';
+import b2 from '../assets/images/b2.png';
+import b3 from '../assets/images/b3.png';
+import b4 from '../assets/images/b4.png';
+import b5 from '../assets/images/b5.png';
+import b6 from '../assets/images/b6.png';
+import c1 from '../assets/images/1c.png';
+import c2 from '../assets/images/2c.png';
+import c3 from '../assets/images/3c.png';
+import c4 from '../assets/images/4c.png';
 
 export const bottleOptions: { type: BottleType; name: string; image: string }[] = [
   {
     type: 'bordeaux',
     name: 'Bordeaux Bottle',
-    image: b1
+    image: b1,
   },
   {
     type: 'burgundy',
@@ -41,7 +41,7 @@ export const bottleOptions: { type: BottleType; name: string; image: string }[] 
     type: 'rhine',
     name: 'Rhine Bottle',
     image: b6,
-  }
+  },
 ];
 
 export const bottleVariants = {
@@ -125,4 +125,3 @@ export const backgroundTypes = [
   { id: 'water', name: 'Water Splash', value: 'https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg' },
   { id: 'forest', name: 'Forest', value: 'https://images.pexels.com/photos/4827/nature-forest-trees-fog.jpeg' },
 ];
-

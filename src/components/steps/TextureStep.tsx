@@ -1,7 +1,6 @@
 import { StepProps } from '../../types/bottles';
 import { textureOptions } from '../../constants/bottles';
 
-
 export function TextureStep({ design, updateDesign, onNext, onBack, onReset }: StepProps) {
   return (
     <div className="w-full max-w-5xl mx-auto p-6 border rounded-md">

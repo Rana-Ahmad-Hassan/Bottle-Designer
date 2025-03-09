@@ -155,7 +155,7 @@ export default function BottleModel({ design }: BottleModelProps) {
               true,
             ]}
           />
-          <meshBasicMaterial map={texture} transparent={true} side={DoubleSide} opacity={1} />
+          <meshBasicMaterial map={texture} side={DoubleSide} opacity={3} />
         </mesh>
       )}
     </group>
