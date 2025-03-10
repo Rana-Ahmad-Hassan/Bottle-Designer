@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
-import { Color, DoubleSide, type Group, Mesh, MeshPhysicalMaterial, TextureLoader } from 'three';
-import { useLoader } from '@react-three/fiber';
+import { Color, DoubleSide, type Group, Mesh, MeshPhysicalMaterial } from 'three';
 import { BottleDesign } from '../../types/bottles';
+import useLabelTexture from '../../hooks/useLabedTexture';
 
 interface BottleModelProps {
   design: BottleDesign;
@@ -32,7 +32,7 @@ export default function BottleModel({ design }: BottleModelProps) {
     }
   }, [design.label]);
 
-  const texture = useLoader(TextureLoader, labelTexture || 'default-texture.jpg');
+  const texture = useLabelTexture(labelTexture);
 
   useEffect(() => {
     if (groupRef.current) {
@@ -129,7 +129,7 @@ export default function BottleModel({ design }: BottleModelProps) {
         />
       </mesh>
 
-      {/* Bottle capsule/cork */}
+      {/* Bottle capsule*/}
       {design.capsule && (
         <mesh
           name="capsule"
