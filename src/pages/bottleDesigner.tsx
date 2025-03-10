@@ -27,7 +27,7 @@ const initialDesign: BottleDesign = {
 function BottleDesigner() {
   const [currentStep, setCurrentStep] = useState(0);
   const [design, setDesign] = useState<BottleDesign>(initialDesign);
-  const [isResetModalOpen, setIsResetModalOpen] = useState(false); 
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false);
 
   const updateDesign = (updates: Partial<BottleDesign>) => {
     setDesign((prev) => ({ ...prev, ...updates }));
@@ -42,7 +42,7 @@ function BottleDesigner() {
   };
 
   const handleReset = () => {
-    setIsResetModalOpen(true); 
+    setIsResetModalOpen(true);
   };
 
   const confirmReset = () => {

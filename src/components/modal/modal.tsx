@@ -17,8 +17,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onConfirm, title = 'Conf
         <h2 className="text-lg font-semibold">{title}</h2>
         <p className="mt-2">{message}</p>
         <div className="mt-4 flex justify-end space-x-3">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded-md">Cancel</button>
-          <button onClick={onConfirm} className="px-4 py-2 bg-red-500 text-white rounded-md">Reset</button>
+          <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded-md">
+            Cancel
+          </button>
+          <button onClick={onConfirm} className="px-4 py-2 bg-red-500 text-white rounded-md">
+            Reset
+          </button>
         </div>
       </div>
     </div>

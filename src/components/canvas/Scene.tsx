@@ -32,7 +32,7 @@ export default function BottleModel({ design }: BottleModelProps) {
     }
   }, [design.label]);
 
-  const texture = labelTexture ? useLoader(TextureLoader, labelTexture) : null;
+  const texture = useLoader(TextureLoader, labelTexture || 'default-texture.jpg');
 
   useEffect(() => {
     if (groupRef.current) {

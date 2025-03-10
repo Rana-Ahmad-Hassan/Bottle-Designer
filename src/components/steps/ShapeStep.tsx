@@ -8,6 +8,8 @@ export function ShapeStep({ design, updateDesign, onNext, onReset }: StepProps) 
         {bottleOptions.map((bottle) => (
           <div key={bottle.type} className="flex flex-col items-center">
             <div
+              role="button"
+              tabIndex={0}
               className={`relative cursor-pointer rounded-lg overflow-hidden transition-all p-3 ${
                 design.type === bottle.type ? 'bg-cyan' : 'bg-blue-300/25'
               }`}

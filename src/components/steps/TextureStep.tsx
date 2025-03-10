@@ -11,10 +11,17 @@ export function TextureStep({ design, updateDesign, onNext, onBack, onReset }: S
             {textureOptions.map((texture) => (
               <div
                 key={texture.type}
+                role="button"
+                tabIndex={0}
                 className={`relative cursor-pointer h-[150px] items-center flex justify-center rounded-lg overflow-hidden border-2 p-4 transition-all ${
                   design.texture === texture.type ? 'border-cyan' : 'border-gray-200 hover:border-gray-300'
                 }`}
                 onClick={() => updateDesign({ texture: texture.type })}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    updateDesign({ texture: texture.type });
+                  }
+                }}
               >
                 <h4 className="font-medium text-sm text-black mb-1">{texture.name}</h4>
               </div>

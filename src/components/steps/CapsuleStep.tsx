@@ -10,6 +10,8 @@ export function CapsuleStep({ design, updateDesign, onNext, onBack, onReset }: S
             {capsuleOptions.map((capsule) => (
               <div key={capsule.type} className="flex flex-col items-center">
                 <div
+                  role="button"
+                  tabIndex={0}
                   className={`relative cursor-pointer rounded-lg overflow-hidden transition-all p-3 ${
                     design.capsule === capsule.type ? 'border-primary bg-cyan' : 'bg-blue-300/20'
                   }`}
