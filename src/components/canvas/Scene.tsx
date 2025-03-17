@@ -75,6 +75,21 @@ export default function BottleModel({ design }: BottleModelProps) {
     }
   }, [design.color, design.texture]);
 
+  const getCapsuleGeometry = () => {
+    switch (design.capsule) {
+      case 'cork':
+        return <cylinderGeometry args={[shapeParams.neckRadius * 1.2, shapeParams.neckRadius * 1.0, 0.3, 32]} />;
+      case 'screw':
+        return <cylinderGeometry args={[shapeParams.neckRadius * 1.1, shapeParams.neckRadius * 1.1, 0.25, 32]} />;
+      case 'synthetic':
+        return <cylinderGeometry args={[shapeParams.neckRadius * 1.15, shapeParams.neckRadius * 1.05, 0.3, 32]} />;
+      case 'crown':
+        return <torusGeometry args={[shapeParams.neckRadius * 1.2, 0.05, 16, 100]} />;
+      default:
+        return <cylinderGeometry args={[shapeParams.neckRadius * 1.1, shapeParams.neckRadius * 1.1, 0.2, 32]} />;
+    }
+  };
+
   return (
     <group ref={groupRef} position={[0, -0.7, 0]}>
       {/* Bottle body */}
@@ -129,16 +144,15 @@ export default function BottleModel({ design }: BottleModelProps) {
         />
       </mesh>
 
-      {/* Bottle capsule*/}
       {design.capsule && (
         <mesh
           name="capsule"
           ref={capsuleRef}
-          position={[0, shapeParams.bodyHeight / 2 + shapeParams.shoulderHeight + shapeParams.neckHeight + 0.1, 0]}
+          position={[0, shapeParams.bodyHeight / 2 + shapeParams.shoulderHeight + shapeParams.neckHeight + 0.15, 0]}
           castShadow
           receiveShadow
         >
-          <cylinderGeometry args={[shapeParams.neckRadius * 1.1, shapeParams.neckRadius * 1.1, 0.2, 32]} />
+          {getCapsuleGeometry()}
           <meshStandardMaterial color={design.capsuleColor} />
         </mesh>
       )}

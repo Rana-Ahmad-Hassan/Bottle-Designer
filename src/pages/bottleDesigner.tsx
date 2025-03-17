@@ -20,7 +20,7 @@ const initialDesign: BottleDesign = {
   capsule: '',
   capsuleColor: '',
   label: '',
-  texture: 'smooth',
+  texture: 'hammered',
   background: '',
 };
 
