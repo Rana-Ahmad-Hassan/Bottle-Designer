@@ -9,7 +9,6 @@ import b6 from '../assets/images/b6.png';
 import c1 from '../assets/images/1c.png';
 import c2 from '../assets/images/2c.png';
 import c3 from '../assets/images/3c.png';
-import c4 from '../assets/images/4c.png';
 
 export const bottleOptions: { type: BottleType; name: string; image: string }[] = [
   {
@@ -78,11 +77,6 @@ export const capsuleOptions: { type: CapsuleType; name: string; image: string }[
     name: 'Synthetic Cork',
     image: c3,
   },
-  {
-    type: 'crown',
-    name: 'Crown Cap',
-    image: c4,
-  },
 ];
 
 export const capsuleVariants = [
@@ -116,7 +110,7 @@ export const textureOptions: { type: TextureType; name: string; description: str
     type: 'matte',
     name: 'Matte Finish',
     description: 'Non-reflective matte surface',
-  },
+  }
 ];
 
 export const backgroundTypes = [

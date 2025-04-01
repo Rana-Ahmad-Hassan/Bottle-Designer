@@ -1,5 +1,6 @@
 import { capsuleOptions } from '../../constants/bottles';
 import { StepProps } from '../../types/bottles';
+
 export function CapsuleStep({ design, updateDesign, onNext, onBack, onReset }: StepProps) {
   return (
     <div className="w-full max-w-5xl mx-auto p-6 border shadow-sm rounded-md">
@@ -7,6 +8,23 @@ export function CapsuleStep({ design, updateDesign, onNext, onBack, onReset }: S
         <div className="flex flex-col space-y-3">
           <h2 className="text-lg font-bold text-gray-900">Choose capsule for your bottle</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-2">
+            {/* No Capsule Selected Option */}
+            <div className="flex flex-col items-center">
+              <div
+                role="button"
+                tabIndex={0}
+                className={`relative cursor-pointer rounded-lg overflow-hidden transition-all p-3 border ${
+                  !design.capsule ? 'border-primary bg-cyan' : 'bg-blue-300/20'
+                }`}
+                onClick={() => updateDesign({ capsule: undefined })}
+              >
+                <div className="flex justify-center h-24 w-40 bg-gray-200  items-center">
+                  <span className="text-gray-600 text-sm">No Capsule Selected</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Capsule Options */}
             {capsuleOptions.map((capsule) => (
               <div key={capsule.type} className="flex flex-col items-center">
                 <div

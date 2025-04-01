@@ -20,7 +20,7 @@ const initialDesign: BottleDesign = {
   capsule: '',
   capsuleColor: '',
   label: '',
-  texture: 'hammered',
+  texture: "none",
   background: '',
 };
 
@@ -54,23 +54,48 @@ function BottleDesigner() {
   const handleSave = () => {
     requestAnimationFrame(() => {
       const canvas = document.querySelector('#bottle-preview canvas') as HTMLCanvasElement;
-      if (!canvas) return;
-      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
-      if (!gl) return;
+      if (!canvas) {
+        console.error('Canvas not found!');
+        return;
+      }
 
       const tempCanvas = document.createElement('canvas');
       const tempCtx = tempCanvas.getContext('2d');
-      if (!tempCtx) return;
+      if (!tempCtx) {
+        console.error('Failed to get 2D context!');
+        return;
+      }
 
       tempCanvas.width = canvas.width;
       tempCanvas.height = canvas.height;
 
-      const bgImage = new Image();
-      bgImage.crossOrigin = 'anonymous';
-      bgImage.src = design.background;
+      if (design.background) {
+        const bgImage = new Image();
+        bgImage.crossOrigin = 'anonymous';
+        bgImage.src = design.background;
 
-      bgImage.onload = () => {
-        tempCtx.drawImage(bgImage, 0, 0, tempCanvas.width, tempCanvas.height);
+        bgImage.onload = () => {
+          tempCtx.drawImage(bgImage, 0, 0, tempCanvas.width, tempCanvas.height);
+          tempCtx.drawImage(canvas, 0, 0);
+
+          tempCanvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = `bottle-design-${Date.now()}.png`;
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+              }
+            },
+            'image/png',
+            1.0,
+          );
+        };
+
+        bgImage.onerror = () => console.error('Failed to load background image!');
+      } else {
         tempCtx.drawImage(canvas, 0, 0);
         tempCanvas.toBlob(
           (blob) => {
@@ -86,7 +111,7 @@ function BottleDesigner() {
           'image/png',
           1.0,
         );
-      };
+      }
     });
   };
 
